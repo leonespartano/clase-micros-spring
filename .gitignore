@@ -1,0 +1,6 @@
+#Folder to ignore
+.metadata/
+springboot-servicio-item/target/
+springboot-servicio-productos/target/
+
+
