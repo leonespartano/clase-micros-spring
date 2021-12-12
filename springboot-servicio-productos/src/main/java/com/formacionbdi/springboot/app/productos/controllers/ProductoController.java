@@ -45,14 +45,14 @@ public class ProductoController {
 		//if (!ok) {
 		//*	throw new RuntimeException("No se puedo cargar el producto");
 		//}
-		
+		/*
 		try {
 			Thread.sleep(2000L);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		*/
 		return producto;
 	}
 }
