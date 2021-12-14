@@ -7,11 +7,16 @@ spring:
         predicates:
           - Path=/api/productos/**
         filters:
-        - StripPrefix=2
+          - StripPrefix=2
+          - name: Ejemplo
+            args:
+              mensaje: Hola mi mensaje personalizado
+              cookieNombre: usuario
+              cookieValor: AndresGuzman
       - id: servicio-items
         uri: lb://servicio-items
         predicates:
           - Path=/api/items/**
         filters:
-        - StripPrefix=2
+          - StripPrefix=2
         
