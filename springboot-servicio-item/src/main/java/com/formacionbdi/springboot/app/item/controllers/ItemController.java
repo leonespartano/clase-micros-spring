@@ -1,13 +1,18 @@
 package com.formacionbdi.springboot.app.item.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -24,7 +29,7 @@ import com.formacionbdi.springboot.app.item.models.service.ItemService;
 @RestController
 public class ItemController {
 	
-	private Logger logger = LoggerFactory.getLogger(ItemController.class);
+	private static Logger logger = LoggerFactory.getLogger(ItemController.class);
 	
 	@Autowired
 	private CircuitBreakerFactory cbFactory;
@@ -32,6 +37,9 @@ public class ItemController {
 	@Autowired
 	@Qualifier("serviceFeign")
 	private ItemService itemService;
+
+	@Value("${configuracion.texto}")
+	private String texto;
 	
 	@GetMapping("/listar")
 	public List<Item> listar(@RequestParam(name="nombre", required = false) String nombre, @RequestHeader(name="token-request", required = false) String token){
@@ -73,10 +81,11 @@ public class ItemController {
 		producto.setPrecio(500.00);
 		item.setProducto(producto);
 		
+		
 		return item;	
 	}
-
-
+	
+	
 	public CompletableFuture<Item> metodoAlternativo2(Long id, Integer cantidad, Throwable e) {
 		logger.info(e.getMessage());
 		
@@ -90,5 +99,14 @@ public class ItemController {
 		item.setProducto(producto);
 		
 		return CompletableFuture.supplyAsync(()-> item);	
+	}
+
+	@GetMapping("/obtener-config")
+	public ResponseEntity<?> obtenerConfig(@Value("${server.port}") String puerto){
+		logger.info(texto);
+		Map<String,String> json = new HashMap<>();
+		json.put("texto", texto);
+		json.put("puerto", puerto);
+		return new ResponseEntity<Map<String, String>>(json, HttpStatus.OK);
 	}
 }
