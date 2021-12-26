@@ -1,6 +1,6 @@
-#Folder to ignore
-.metadata/
 springboot-servicio-item/target/
 springboot-servicio-productos/target/
 springboot-servicio-erureka-server/target/
 springboot-servicio-gateway-server/target/
+springboot-servicio-commons/target/
+.metadata/
