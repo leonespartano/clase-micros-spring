@@ -5,4 +5,5 @@ springboot-servicio-gateway-server/target/
 springboot-servicio-commons/target/
 springboot-servicio-usuarios/target/
 springboot-servicio-usuarios-commons/target/
+springboot-servicio-oauth/target
 .metadata/
