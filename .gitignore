@@ -4,4 +4,5 @@ springboot-servicio-erureka-server/target/
 springboot-servicio-gateway-server/target/
 springboot-servicio-commons/target/
 springboot-servicio-usuarios/target/
+springboot-servicio-usuarios-commons/target/
 .metadata/
